@@ -37,13 +37,13 @@ namespace Hospital
 
         private void OpenLogin(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow(accounts, OnLogIn);
+            LoginWindow loginWindow = new LoginWindow(OnLogIn);
             loginWindow.ShowDialog();
         }
 
         private void OnLogIn(int index)
         {
-            MessageBox.Show("Log");
+            MessageBox.Show($"Вход в аккаунт: {accounts[index].Name}");
         }
     }
 }

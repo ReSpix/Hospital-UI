@@ -6,15 +6,42 @@
         xmlns:local="clr-namespace:Hospital"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="LoginWindow" Height="205" Width="236">
+        Title="Аккаунт" Height="311" Width="385">
     <Grid>
-        <Label Content="Вход" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Margin="19,52,0,0" VerticalAlignment="Top"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="19,83,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="mail_f" HorizontalAlignment="Left" Margin="92,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="MailChanged"/>
-        <TextBox x:Name="password_f" HorizontalAlignment="Left" Margin="92,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="PasswordChanged"/>
-        <Button x:Name="login" Content="Войти" HorizontalAlignment="Left" Margin="19,129,0,0" Width="92" Click="LogIn" Height="20" VerticalAlignment="Top"/>
-        <Button x:Name="register" Content="Регистрация" HorizontalAlignment="Left" Margin="126,129,0,0" Click="Register" Width="86" Height="20" VerticalAlignment="Top"/>
+        <TabControl>
+            <TabItem Header="Вход">
+                <Grid>
+                    <Label Content="Вход" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+                    <Label Content="Почта" HorizontalAlignment="Left" Margin="19,52,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="mail_log_f" HorizontalAlignment="Left" Margin="146,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="MailLoginChanged"/>
+
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="19,83,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="password_log_f" HorizontalAlignment="Left" Margin="146,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="PasswordLoginChanged"/>
+
+                    <Button x:Name="login" Content="Войти" HorizontalAlignment="Center" Margin="0,154,0,0" Click="LogIn" Width="194" Height="27" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Регистрация">
+                <Grid>
+                    <Label Content="Регистрация" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+                    <Label Content="ФИО" HorizontalAlignment="Left" Margin="19,52,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="name_reg_f" HorizontalAlignment="Left" Margin="146,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="name_reg_f_TextChanged"/>
+
+                    <Label Content="Почта" HorizontalAlignment="Left" Margin="19,83,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="mail_reg_f" HorizontalAlignment="Left" Margin="146,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="mail_reg_f_TextChanged"/>
+
+                    <Label Content="Пароль" HorizontalAlignment="Left" Margin="19,115,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="password_reg_f" HorizontalAlignment="Left" Margin="146,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="password_reg_f_TextChanged"/>
+
+                    <Label Content="Повторите пароль" HorizontalAlignment="Left" Margin="19,147,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="check_password_reg_f" HorizontalAlignment="Left" Margin="146,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TextChanged="check_password_reg_f_TextChanged"/>
+
+                    <Button x:Name="register_reg" Content="Зарегистрироваться" HorizontalAlignment="Center" Margin="0,197,0,0" Click="Register" Width="194" Height="27" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
