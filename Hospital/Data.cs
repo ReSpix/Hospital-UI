@@ -15,7 +15,7 @@ namespace Hospital
 
         public struct Patient
         {
-            public string Name;
+            public string fullName;
             public TimeOnly start;
             public TimeOnly end;
             public DayOfWeek day;
