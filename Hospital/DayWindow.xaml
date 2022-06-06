@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hospital"
         mc:Ignorable="d"
-        Title="DayWindow" Height="450" Width="800">
+        ResizeMode="CanMinimize"
+        Title="Расписание" Height="450" Width="800">
     <Grid>
         <Label Content="Расписание на понедельник" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="_Users" Margin="0,41,0,0">
@@ -13,12 +14,13 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding fullName}"/>
-                        <Button Content="Редактировать"/>
-                        <Button Content="Удалить"/>
+                        <Button Content="Редактировать" Margin="10,0,0,0" Click="Edit_click"/>
+                        <Button Content="Удалить" Margin="10,0,0,0" Click="Delete_click"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="221,13,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
 
     </Grid>
 </Window>

@@ -44,5 +44,21 @@ namespace Hospital
             }
             return today;
         }
+
+        private void Edit_click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+        }
+
+        private void Delete_click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            PatientWindow pw = new PatientWindow(day);
+            pw.ShowDialog();
+        }
     }
 }
