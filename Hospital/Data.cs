@@ -15,10 +15,17 @@ namespace Hospital
 
         public struct Patient
         {
-            public string fullName { get; set; }
+            public string fullName;
             public TimeOnly start;
             public TimeOnly end;
             public DayOfWeek day;
+
+            public string FullString { 
+                get
+                {
+                    return $"{start} - {end} - {fullName}";
+                }
+            }
         }
     }
 }

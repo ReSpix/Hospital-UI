@@ -13,7 +13,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding fullName}"/>
+                        <TextBlock Text="{Binding FullString}"/>
                         <Button Content="Ред." Margin="10,0,0,0" Click="Edit_click"/>
                         <Button Content="X" Margin="10,0,0,0" Click="Delete_click"/>
                     </StackPanel>
