@@ -27,6 +27,17 @@ namespace Hospital
             password = "123456",
             patients = new List<Data.Patient> {
                 new Data.Patient() { fullName = "Дмитриев Дмитрий Дмитриевич", day = DayOfWeek.Monday, start = TimeOnly.Parse("08:00"), end = TimeOnly.Parse("10:00")},
+                new Data.Patient() { fullName = "Иванов Иван Иванович", day = DayOfWeek.Monday, start = TimeOnly.Parse("10:00"), end = TimeOnly.Parse("11:00")},
+                new Data.Patient() { fullName = "Васильев Василий Васильевич", day = DayOfWeek.Tuesday, start = TimeOnly.Parse("08:00"), end = TimeOnly.Parse("09:00")},
+                new Data.Patient() { fullName = "Николаев Николай Николаевич", day = DayOfWeek.Tuesday, start = TimeOnly.Parse("10:00"), end = TimeOnly.Parse("10:30")},
+                new Data.Patient() { fullName = "Сидоров Сидор Сидорович", day = DayOfWeek.Wednesday, start = TimeOnly.Parse("09:00"), end = TimeOnly.Parse("10:30")},
+                new Data.Patient() { fullName = "Станиславов Станислав Станисловович", day = DayOfWeek.Wednesday, start = TimeOnly.Parse("11:00"), end = TimeOnly.Parse("12:00")},
+                new Data.Patient() { fullName = "Аркаьев Аркадий Аркадьевич", day = DayOfWeek.Wednesday, start = TimeOnly.Parse("12:00"), end = TimeOnly.Parse("13:00")},
+                new Data.Patient() { fullName = "Павлов Павел Павлович", day = DayOfWeek.Thursday, start = TimeOnly.Parse("12:00"), end = TimeOnly.Parse("12:50")},
+                new Data.Patient() { fullName = "Викторов Виктор Викторович", day = DayOfWeek.Thursday, start = TimeOnly.Parse("08:00"), end = TimeOnly.Parse("12:00")},
+                new Data.Patient() { fullName = "Евгеньев Евгений Евгеньевич", day = DayOfWeek.Friday, start = TimeOnly.Parse("08:00"), end = TimeOnly.Parse("10:00")},
+                new Data.Patient() { fullName = "Константинов Константин Константинович", day = DayOfWeek.Friday, start = TimeOnly.Parse("10:30"), end = TimeOnly.Parse("10:40")},
+                new Data.Patient() { fullName = "Максимов Максим Максимович", day = DayOfWeek.Monday, start = TimeOnly.Parse("11:00"), end = TimeOnly.Parse("12:00")}
             }
         };
         public static List<Data.Account> accounts = new List<Data.Account>(){ testAccount };

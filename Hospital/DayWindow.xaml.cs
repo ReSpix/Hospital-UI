@@ -63,7 +63,7 @@ namespace Hospital
                     today.Add(p);
                 }
             }
-            return today;
+            return today.OrderBy(x => x.start).ToList();
         }
 
         private void Edit_click(object sender, RoutedEventArgs e)
