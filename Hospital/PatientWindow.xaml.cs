@@ -39,8 +39,12 @@ namespace Hospital
 
             this.patient = patient;
             name_f.Text = patient.fullName;
-            start_f.Text = patient.start.ToString();
-            end_f.Text = patient.end.ToString();
+
+            string start_s = patient.start.ToString();
+            start_f.Text = start_s.Length < 5 ? "0" + start_s : start_s;
+
+            string end_s = patient.end.ToString();
+            end_f.Text = end_s.Length < 5 ? "0" + end_s : end_s;
         }
 
         private void Init(DayOfWeek day, Action onPatientAdd)
