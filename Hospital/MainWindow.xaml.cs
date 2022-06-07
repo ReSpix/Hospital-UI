@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,9 +82,12 @@ namespace Hospital
             return r;
         }
 
-        private void OpenMonday(object sender, RoutedEventArgs e)
+        private void OpenDay(object sender, RoutedEventArgs e)
         {
-            DayWindow dayWindow = new DayWindow(DayOfWeek.Monday, CurrentAccount.patients, FillDayCounters);
+            int i = days_grid.Children.IndexOf((Button)sender);
+            i = (i + 1) / 3;
+            if (i == 7) i = 0;
+            DayWindow dayWindow = new DayWindow((DayOfWeek)i, CurrentAccount.patients, FillDayCounters);
             dayWindow.ShowDialog();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace Hospital
         public DayWindow(DayOfWeek day, List<Data.Patient> patients, Action onAdded)
         {
             InitializeComponent();
+            title_l.Content = $"Расписание на {DateTimeFormatInfo.CurrentInfo.GetDayName(day)}";
             this.day = day;
             DayWindow.patients = patients;
             patientsUpdated = onAdded;
@@ -36,7 +38,17 @@ namespace Hospital
 
         public void UpdateList()
         {
-            _Users.ItemsSource = TodayPatients(day);
+            if (TodayPatients(day).Count == 0)
+            {
+                emptyList_l.Visibility = Visibility.Visible;
+                _Users.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                emptyList_l.Visibility = Visibility.Hidden;
+                _Users.Visibility = Visibility.Visible;
+                _Users.ItemsSource = TodayPatients(day);
+            }
             patientsUpdated?.Invoke();
         }
 

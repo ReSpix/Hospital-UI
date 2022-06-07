@@ -14,34 +14,34 @@
         <Grid x:Name="account_grid" Visibility="Hidden">
             <Label x:Name="name_l" Content="Здравствуйте, {ИМЯ}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <GroupBox Header="Расписание на неделю" Margin="0,41,0,0">
-                <Grid>
+                <Grid x:Name="days_grid">
                     <Label Content="Понедельник -" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="mond_c" Content="3 пациента" HorizontalAlignment="Left" Margin="102,10,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,13,0,0" VerticalAlignment="Top" Click="OpenMonday"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,13,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Вторник -" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="tue_c" Content="3 пациента" HorizontalAlignment="Left" Margin="74,50,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,53,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,53,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Среда -" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="wed_c" Content="3 пациента" HorizontalAlignment="Left" Margin="62,90,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,93,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,93,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Четверг -" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="thur_c" Content="3 пациента" HorizontalAlignment="Left" Margin="74,130,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,133,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,133,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Пятница -" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="fri_c" Content="3 пациента" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,173,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="fri_c" Content="3 пациента" HorizontalAlignment="Left" Margin="74,170,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,173,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Суббота -" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="sat_c" Content="3 пациента" HorizontalAlignment="Left" Margin="75,210,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,213,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,213,0,0" VerticalAlignment="Top" Click="OpenDay"/>
 
                     <Label Content="Воскресенье -" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="sun_c" Content="3 пациента" HorizontalAlignment="Left" Margin="98,250,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,253,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Открыть" HorizontalAlignment="Left" Margin="182,253,0,0" VerticalAlignment="Top" Click="OpenDay"/>
                 </Grid>
             </GroupBox>
 
