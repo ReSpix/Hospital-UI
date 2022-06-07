@@ -26,8 +26,24 @@ namespace Hospital
         private TimeOnly endTime;
 
         private Action patientAdded;
+        private Data.Patient? patient = null;
 
         public PatientWindow(DayOfWeek day, Action onPatientAdd)
+        {
+            Init(day, onPatientAdd);
+        }
+
+        public PatientWindow(DayOfWeek day, Action onPatientAdd, Data.Patient patient)
+        {
+            Init(day, onPatientAdd);
+
+            this.patient = patient;
+            name_f.Text = patient.fullName;
+            start_f.Text = patient.start.ToString();
+            end_f.Text = patient.end.ToString();
+        }
+
+        private void Init(DayOfWeek day, Action onPatientAdd)
         {
             InitializeComponent();
             Title = Title + $" ({day.ToString()})";
@@ -90,18 +106,32 @@ namespace Hospital
             {
                 MessageBox.Show("Время не должно пересекаться с другими пациентами", "Пересечение времени");
             }
-            else
+            else if(patient == null)
             {
                 AddPatient();
-                patientAdded();
-                Close();
             }
+            else
+            {
+                EditPatient();
+            }
+        }
+
+        private void EditPatient()
+        {
+            int index = MainWindow.CurrentAccount.patients.IndexOf((Data.Patient)patient);
+            Data.Patient newPatient = new Data.Patient() { day = day, fullName = fullName, end = endTime, start = startTime };
+            MainWindow.CurrentAccount.patients[index] = newPatient;
+
+            patientAdded();
+            Close();
         }
 
         private void AddPatient()
         {
             Data.Patient p = new Data.Patient() { day = day, fullName = fullName, end = endTime, start = startTime };
             MainWindow.CurrentAccount.patients.Add(p);
+            patientAdded();
+            Close();
         }
 
         private bool TimeCollision(TimeOnly start, TimeOnly end)
@@ -110,6 +140,10 @@ namespace Hospital
 
             foreach(Data.Patient p in patients)
             {
+                if(p.Equals((Data.Patient)patient))
+                {
+                    continue;
+                }
                 if(start >= p.start && start < p.end || end > p.start && end <= p.end)
                 {
                     return true;

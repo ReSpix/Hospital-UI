@@ -23,21 +23,21 @@ namespace Hospital
         private DayOfWeek day;
         private static List<Data.Patient> patients;
 
-        private Action patientAdded;
+        private Action patientsUpdated;
 
         public DayWindow(DayOfWeek day, List<Data.Patient> patients, Action onAdded)
         {
             InitializeComponent();
             this.day = day;
             DayWindow.patients = patients;
-            patientAdded = onAdded;
+            patientsUpdated = onAdded;
             UpdateList();
         }
 
         public void UpdateList()
         {
             _Users.ItemsSource = TodayPatients(day);
-            patientAdded?.Invoke();
+            patientsUpdated?.Invoke();
         }
 
         public static List<Data.Patient> TodayPatients(DayOfWeek day)
@@ -56,12 +56,23 @@ namespace Hospital
 
         private void Edit_click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+            var item = (sender as FrameworkElement).DataContext;
+            int index = _Users.Items.IndexOf(item);
+
+            Data.Patient p = (Data.Patient)item;
+            PatientWindow ps = new PatientWindow(day, UpdateList, p);
+            ps.ShowDialog();
         }
 
         private void Delete_click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+            var item = (sender as FrameworkElement).DataContext;
+            int index = _Users.Items.IndexOf(item);
+
+            Data.Patient p = (Data.Patient)item;
+            MainWindow.CurrentAccount.patients.Remove(p);
+            patientsUpdated?.Invoke();
+            UpdateList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
