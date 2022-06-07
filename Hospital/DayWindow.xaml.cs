@@ -21,21 +21,30 @@ namespace Hospital
     public partial class DayWindow : Window
     {
         private DayOfWeek day;
-        private List<Data.Patient> patients;
+        private static List<Data.Patient> patients;
 
-        public DayWindow(DayOfWeek day, List<Data.Patient> patients)
+        private Action patientAdded;
+
+        public DayWindow(DayOfWeek day, List<Data.Patient> patients, Action onAdded)
         {
             InitializeComponent();
             this.day = day;
-            this.patients = patients;
-            _Users.ItemsSource = TodayPatients(patients);
+            DayWindow.patients = patients;
+            patientAdded = onAdded;
+            UpdateList();
         }
 
-        private List<Data.Patient> TodayPatients(List<Data.Patient> allPatients)
+        public void UpdateList()
+        {
+            _Users.ItemsSource = TodayPatients(day);
+            patientAdded?.Invoke();
+        }
+
+        public static List<Data.Patient> TodayPatients(DayOfWeek day)
         {
             List<Data.Patient> today = new List<Data.Patient>();
 
-            foreach(Data.Patient p in allPatients)
+            foreach(Data.Patient p in patients)
             {
                 if(p.day == day)
                 {
@@ -57,7 +66,7 @@ namespace Hospital
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            PatientWindow pw = new PatientWindow(day);
+            PatientWindow pw = new PatientWindow(day, UpdateList);
             pw.ShowDialog();
         }
     }

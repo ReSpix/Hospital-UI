@@ -31,7 +31,7 @@ namespace Hospital
         public static List<Data.Account> accounts = new List<Data.Account>(){ testAccount };
 
         private LoginWindow loginWindow;
-        private Data.Account currentAccount;
+        public static Data.Account CurrentAccount;
 
         public MainWindow()
         {
@@ -51,8 +51,8 @@ namespace Hospital
             account_grid.Visibility = Visibility.Visible;
             loginWindow?.Close();
 
-            currentAccount = accounts[index];
-            name_l.Content = $"Здравствуйте, {currentAccount.Name}";
+            CurrentAccount = accounts[index];
+            name_l.Content = $"Здравствуйте, {CurrentAccount.Name}";
             FillDayCounters();
         }
 
@@ -71,7 +71,7 @@ namespace Hospital
         private int PatientsOfDay(DayOfWeek day)
         {
             int r = 0;
-            foreach(Data.Patient p in currentAccount.patients)
+            foreach(Data.Patient p in CurrentAccount.patients)
             {
                 if(day == p.day)
                 {
@@ -83,7 +83,7 @@ namespace Hospital
 
         private void OpenMonday(object sender, RoutedEventArgs e)
         {
-            DayWindow dayWindow = new DayWindow(DayOfWeek.Monday, currentAccount.patients);
+            DayWindow dayWindow = new DayWindow(DayOfWeek.Monday, CurrentAccount.patients, FillDayCounters);
             dayWindow.ShowDialog();
         }
     }

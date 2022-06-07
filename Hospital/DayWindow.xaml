@@ -14,8 +14,8 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding fullName}"/>
-                        <Button Content="Редактировать" Margin="10,0,0,0" Click="Edit_click"/>
-                        <Button Content="Удалить" Margin="10,0,0,0" Click="Delete_click"/>
+                        <Button Content="Ред." Margin="10,0,0,0" Click="Edit_click"/>
+                        <Button Content="X" Margin="10,0,0,0" Click="Delete_click"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

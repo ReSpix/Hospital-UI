@@ -25,11 +25,14 @@ namespace Hospital
         private TimeOnly startTime;
         private TimeOnly endTime;
 
-        public PatientWindow(DayOfWeek day)
+        private Action patientAdded;
+
+        public PatientWindow(DayOfWeek day, Action onPatientAdd)
         {
             InitializeComponent();
             Title = Title + $" ({day.ToString()})";
             this.day = day;
+            patientAdded = onPatientAdd;
         }
 
         private void Name_changed(object sender, TextChangedEventArgs e)
@@ -75,6 +78,44 @@ namespace Hospital
             {
                 MessageBox.Show("Введите время в формате ЧЧ:ММ (12:00)", "Неверное время");
             }
+            else if(startTime < TimeOnly.Parse("08:00") || endTime > TimeOnly.Parse("17:00"))
+            {
+                MessageBox.Show("Время должно быть между 08:00 и 17:00", "Неверное время");
+            }
+            else if(startTime >= endTime)
+            {
+                MessageBox.Show("Время начала приема должно быть меньше времени окончания приема", "Неверное время");
+            }
+            else if(TimeCollision(startTime, endTime))
+            {
+                MessageBox.Show("Время не должно пересекаться с другими пациентами", "Пересечение времени");
+            }
+            else
+            {
+                AddPatient();
+                patientAdded();
+                Close();
+            }
+        }
+
+        private void AddPatient()
+        {
+            Data.Patient p = new Data.Patient() { day = day, fullName = fullName, end = endTime, start = startTime };
+            MainWindow.CurrentAccount.patients.Add(p);
+        }
+
+        private bool TimeCollision(TimeOnly start, TimeOnly end)
+        {
+            List<Data.Patient> patients = DayWindow.TodayPatients(day);
+
+            foreach(Data.Patient p in patients)
+            {
+                if(start >= p.start && start < p.end || end > p.start && end <= p.end)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
