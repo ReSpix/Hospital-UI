@@ -94,6 +94,7 @@ namespace Hospital
             {
                 MainWindow.accounts.Add(new Data.Account() { mail = mail_reg, Name = name_reg, password = password_reg, patients = new List<Data.Patient>() });
                 onLogIn(MainWindow.accounts.Count - 1);
+                MainWindow.SaveAccounts();
             }
             
         }

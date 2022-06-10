@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.Json;
+using System.IO;
 
 namespace Hospital
 {
@@ -48,7 +50,7 @@ namespace Hospital
         public MainWindow()
         {
             InitializeComponent();
-            OnLogIn(0);
+            LoadAccounts();
         }
 
         private void OpenLogin(object sender, RoutedEventArgs e)
@@ -100,6 +102,33 @@ namespace Hospital
             if (i == 7) i = 0;
             DayWindow dayWindow = new DayWindow((DayOfWeek)i, CurrentAccount.patients, FillDayCounters);
             dayWindow.ShowDialog();
+        }
+
+        public static void SaveAccounts()
+        {
+            string jsonString = SerializeAccounts();
+
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "accounts.json")))
+            {
+                outputFile.WriteLine(jsonString);
+            }
+
+            Debug.WriteLine($"Сохранено в {docPath}");
+        }
+
+        private void LoadAccounts()
+        {
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string json = File.ReadAllText(docPath + "/accounts.json");
+            accounts = JsonSerializer.Deserialize<List<Data.Account>>(json);
+            Debug.WriteLine("Загружено");
+        }
+
+        private static string SerializeAccounts()
+        {
+            return JsonSerializer.Serialize(accounts);
         }
     }
 }

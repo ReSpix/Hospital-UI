@@ -7,23 +7,46 @@ namespace Hospital
     {
         public struct Account
         {
-            public string Name;
-            public string mail;
-            public string password;
-            public List<Patient> patients;
+            public string Name { get; set; }
+            public string mail { get; set; }
+            public string password { get; set; }
+            public List<Patient> patients { get; set; }
         }
 
         public struct Patient
         {
-            public string fullName;
+            public string fullName { get; set; }
             public TimeOnly start;
             public TimeOnly end;
-            public DayOfWeek day;
+            public DayOfWeek day { get; set; }
 
             public string FullString { 
                 get
                 {
                     return $"{start} - {end} - {fullName}";
+                }
+            }
+
+            public string Start { 
+                get 
+                { 
+                    return start.ToString(); 
+                } 
+                set 
+                {
+                    start = TimeOnly.Parse(value);
+                }
+            }
+
+            public string End
+            {
+                get
+                {
+                    return end.ToString();
+                }
+                set
+                {
+                    end = TimeOnly.Parse(value);
                 }
             }
         }

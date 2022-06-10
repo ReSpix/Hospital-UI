@@ -33,6 +33,7 @@ namespace Hospital
             this.day = day;
             DayWindow.patients = patients;
             patientsUpdated = onAdded;
+            patientsUpdated += MainWindow.SaveAccounts;
             UpdateList();
         }
 
@@ -83,7 +84,6 @@ namespace Hospital
 
             Data.Patient p = (Data.Patient)item;
             MainWindow.CurrentAccount.patients.Remove(p);
-            patientsUpdated?.Invoke();
             UpdateList();
         }
 
