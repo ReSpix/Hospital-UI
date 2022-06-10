@@ -110,19 +110,29 @@ namespace Hospital
 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "accounts.json")))
+            if(!Directory.Exists(docPath + "/Hospital"))
             {
-                outputFile.WriteLine(jsonString);
+                Directory.CreateDirectory(docPath + "/Hospital");
             }
+
+            File.WriteAllText(docPath + "/Hospital/accounts.json", jsonString);
 
             Debug.WriteLine($"Сохранено в {docPath}");
         }
 
         private void LoadAccounts()
         {
-            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string json = File.ReadAllText(docPath + "/accounts.json");
-            accounts = JsonSerializer.Deserialize<List<Data.Account>>(json);
+            try
+            {
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string json = File.ReadAllText(docPath + "/Hospital/accounts.json");
+                accounts = JsonSerializer.Deserialize<List<Data.Account>>(json);
+            }
+            catch
+            {
+                accounts = new List<Data.Account>();
+                SaveAccounts();
+            }
             Debug.WriteLine("Загружено");
         }
 
